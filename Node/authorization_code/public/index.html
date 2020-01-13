@@ -1,4 +1,4 @@
-
+﻿
 <!doctype html>
 <html>
 
@@ -381,8 +381,13 @@
                             var an = document.getElementById("artistNow");
                             an.innerHTML = data.playlist.song.artist;
                             tn.innerHTML = data.playlist.song.title;
-                            
-                              var track_search = encodeURI(artistNow + " " + titleNow);
+                            var artist = artistNow;
+                            if (artist.includes("&")) {
+                                var temp = artist.split("&");
+                                artist = temp[0];
+
+                            }
+                              var track_search = encodeURI(artist + " " + titleNow);
                             $.ajax({ // search for song_id för att lägga in det i exempelvis i  embedded player och annat
                                     url: "https://api.spotify.com/v1/search?q=" + track_search + "&type=track",
                                     headers: {
